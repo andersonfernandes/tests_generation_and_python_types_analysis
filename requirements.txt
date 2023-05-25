@@ -1,6 +1,7 @@
 pynguin
 mutatest
 coverage
+PyGithub
 
 # Scrapy deps
 scrapy
