@@ -1,0 +1,4 @@
+[submodule "scrapy"]
+	path = scrapy
+	url = git@github.com:andersonfernandes/scrapy.git
+	branch = tests-generation-and-type-inference
