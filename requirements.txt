@@ -1,0 +1,11 @@
+pynguin
+mutatest
+coverage
+
+# Scrapy deps
+scrapy
+w3lib
+sybil
+testfixtures
+sphinx_rtd_theme
+botocore
