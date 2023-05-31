@@ -7,5 +7,7 @@ Run the following to start the docker container:
 - `docker compose build`
 - `docker compose run --rm app bash`
 
-Inside the container run:
-- `pynguin --project-path ./<SUBPROJECT>/<FOLDER> --output-path ./pynguin_tests/<SUBPROJECT>/<FOLDER> --module-name <MODULE>`
+Inside the container, run:
+```bash
+pynguin --project-path ./<SUBPROJECT>/<FOLDER> --output-path ./pynguin_tests/<SUBPROJECT>/<FOLDER> --module-name <MODULE>
+```
