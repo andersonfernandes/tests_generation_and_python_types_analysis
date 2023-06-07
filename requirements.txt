@@ -2,11 +2,4 @@ pynguin
 mutatest
 coverage
 PyGithub
-
-# Scrapy deps
-scrapy
-w3lib
-sybil
-testfixtures
-sphinx_rtd_theme
-botocore
+virtualenv
