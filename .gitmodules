@@ -2,7 +2,7 @@
 	path = scrapy
 	url = git@github.com:andersonfernandes/scrapy.git
 	branch = tests-generation-and-type-inference
-[submodule "ansible"]
-	path = ansible
-	url = git@github.com:andersonfernandes/ansible.git
+[submodule "django"]
+	path = django
+	url = git@github.com:andersonfernandes/django.git
 	branch = tests-generation-and-type-inference
