@@ -6,3 +6,7 @@
 	path = django
 	url = git@github.com:andersonfernandes/django.git
 	branch = tests-generation-and-type-inference
+[submodule "sentry"]
+	path = sentry
+	url = git@github.com:andersonfernandes/sentry.git
+	branch = tests-generation-and-type-inference
