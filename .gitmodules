@@ -10,3 +10,7 @@
 	path = sentry
 	url = git@github.com:andersonfernandes/sentry.git
 	branch = tests-generation-and-type-inference
+[submodule "ansible"]
+	path = ansible
+	url = git@github.com:andersonfernandes/ansible.git
+	branch = tests-generation-and-type-inference
