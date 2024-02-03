@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
 
-#
-# This file is part of Pynguin.
-#
-# SPDX-FileCopyrightText: 2019–2023 Pynguin Contributors
-#
-# SPDX-License-Identifier: MIT
-#
-#
 # This script was created using pynguin's script as reference https://github.com/se2p/pynguin/blob/0.34.0/pynguin-docker.sh
 
-
-INPUT_DIR="/input"
-OUTPUT_DIR="/output"
-PACKAGE_DIR="/package"
+CODE_DIR="/code"
+OUTPUT_DIR="${CODE_DIR}/pynguin_tests"
 
 function help_message {
   echo ""
@@ -21,13 +11,11 @@ function help_message {
   echo "Script to run Pynguin inside a Docker container"
   echo "This script can only be used inside a Docker container, it checks that certain"
   echo "mounts are set, installs possible dependencies of a project for Pynguin,"
-  echo "executes Pynguin and provides the results to an output share."
-  echo "In order to use this, you have to provide two mount points with your Docker run"
+  echo "executes Pynguin and provides the results."
+  echo "In order to use this, you have to provide the code mount point within your Docker run"
   echo "command:"
   echo "docker run \\"
-  echo "    -v /path/to/project:${INPUT_DIR}:ro \\"
-  echo "    -v /path/for/output:${OUTPUT_DIR} \\"
-  echo "    -v /path/to/package.txt:${PACKAGE_DIR}:ro \\"
+  echo "    -v /path/to/code:${CODE_DIR} \\"
   echo "    ..."
   echo ""
 }
@@ -40,9 +28,6 @@ function error_echo {
 
 
 # Check if we are in a running Docker container.
-# TODO This does not seem to be the most stable variant of doing this, as the
-# TODO .dockerenv file is not supposed to be used for this.  Change this, if we have a
-# TODO more stable variant to detect whether we are inside a container!
 if [[ ! -f /.dockerenv ]]
 then
   error_echo "This script is only supposed to be run within a Docker container!"
@@ -51,32 +36,21 @@ then
   exit 1
 fi
 
-# Check if the /input mount point is present and not empty
-if [[ ! -d ${INPUT_DIR} || -z "$(ls -A ${INPUT_DIR})" ]]
+# Check if the /code mount point is present and not empty
+if [[ ! -d ${CODE_DIR} || -z "$(ls -A ${CODE_DIR})" ]]
 then
-  error_echo "You need to specify a mount to ${INPUT_DIR}"
+  error_echo "You need to specify a mount to ${CODE_DIR}"
   help_message
   exit 1
 fi
 
-# Check if the /output mount point is present
-if [[ ! -d ${OUTPUT_DIR} ]]
-then
-  error_echo "You need to specify a mount to ${OUTPUT_DIR}"
-  help_message
-  exit 1
-fi
+cd ${CODE_DIR}
+mkdir -p ${OUTPUT_DIR}
 
-# Check if the /package mount point is present
-if [[ ! -d ${PACKAGE_DIR} && ! -f ${PACKAGE_DIR}/package.txt ]]
-then
-  error_echo "You need to specify a mount to ${PACKAGE_DIR} containing package.txt"
-  help_message
-  exit 1
+if test -f "${CODE_DIR}/package.txt"; then
+  # Install dependencies by installing the package
+  pip install -r "${CODE_DIR}/package.txt"
 fi
-
-# Install dependencies by installing the package
-pip install -r "${PACKAGE_DIR}/package.txt"
 
 # Execute Pynguin with all arguments passed to this script
-pynguin "$@"
+pynguin -v --project-path ${CODE_DIR} --output-path ${OUTPUT_DIR} --report-dir ${CODE_DIR} "$@"

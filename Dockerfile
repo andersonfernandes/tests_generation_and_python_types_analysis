@@ -14,6 +14,7 @@ WORKDIR /pynguin
 
 COPY ./pynguin-docker.sh .
 
+RUN pip install --upgrade pip
 RUN pip install pynguin==${PYNGUIN_VERSION} \
   typing-extensions==4.8.0 \
   mypy==1.6.0
