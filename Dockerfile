@@ -8,7 +8,9 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONHASHSEED 0
 
-RUN apt-get update && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+  apt-get -y install git && \
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /pynguin
 
