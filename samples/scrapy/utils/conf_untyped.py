@@ -166,7 +166,7 @@ def feed_process_params_from_cli(
         settings.getwithbase("FEED_EXPORTERS")
     ).keys()
 
-    def check_valid_format(output_format: str) -> None:
+    def check_valid_format(output_format):
         if output_format not in valid_output_formats:
             raise UsageError(
                 f"Unrecognized output format '{output_format}'. "
