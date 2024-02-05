@@ -1,6 +1,7 @@
 # Scrapy samples
 
 Repo: https://github.com/scrapy/scrapy
+
 Version: 2.11.0
 
 ## Tested Modules
@@ -32,3 +33,17 @@ Version: 2.11.0
 - Generated Test: [pynguin_tests/test_utils_iterators_untyped.py](pynguin_tests/test_utils_iterators_untyped.py)
 - Coverage: 44%
 - Number of test cases: 13
+
+### utils.url
+
+#### [utils/url_typed.py](utils/url_typed.py) [Original]
+
+- Generated Test: [pynguin_tests/test_utils_url_typed.py](pynguin_tests/test_utils_url_typed.py)
+- Coverage: 94%
+- Number of test cases: 22
+
+#### [utils/url_untyped.py](utils/url_untyped.py) [Modified]
+
+- Generated Test: [pynguin_tests/test_utils_url_untyped.py](pynguin_tests/test_utils_url_untyped.py)
+- Coverage: 88%
+- Number of test cases: 20
